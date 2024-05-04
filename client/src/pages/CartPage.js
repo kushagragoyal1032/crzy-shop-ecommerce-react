@@ -32,7 +32,7 @@ const CartPage = () => {
     // get payment gateway token
     const getToken = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/braintree/token`);
+            const { data } = await axios.get(`/api/v1/product/braintree/token`);
             setClientToken(data?.clientToken);
 
         } catch (error) {
@@ -48,7 +48,7 @@ const CartPage = () => {
         try {
             setLoading(true);
             const { nonce } = await instance.requestPaymentMethod();
-            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/braintree/payment`, { nonce, cart });
+            const { data } = await axios.post(`/api/v1/product/braintree/payment`, { nonce, cart });
             setLoading(false);
             localStorage.removeItem('cart')
             setCart([]);
@@ -93,7 +93,7 @@ const CartPage = () => {
                         {cart.map((product) => (
                             <div className='row mb-2 p-3 card flex-row'>
                                 <div className='col-md-4'>
-                                    <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`} className="card-img-top" alt={product.name} width="150px" height="200px" />
+                                    <img src={`/api/v1/product/product-photo/${product._id}`} className="card-img-top" alt={product.name} width="150px" height="200px" />
                                 </div>
                                 <div className='col-md-8'>
                                     <p>{product.name}</p>

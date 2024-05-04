@@ -24,7 +24,7 @@ const HomePage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
+        `/api/v1/product/product-list/${page}`
       );
       setLoading(false);
       setProducts(data.products);
@@ -40,7 +40,7 @@ const HomePage = () => {
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/category/get-category`
+        `/api/v1/category/get-category`
       );
       if (data?.success) {
         setCategories(data?.category);
@@ -54,7 +54,7 @@ const HomePage = () => {
   const getTotal = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/product/product-count`
+        `/api/v1/product/product-count`
       );
       setTotal(data?.total);
     } catch (error) {
@@ -77,7 +77,7 @@ const HomePage = () => {
   const filteredProducts = async () => {
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/product/product-filters`,
+        `/api/v1/product/product-filters`,
         { boxchecked, radio }
       );
       if (data?.success) {
@@ -94,7 +94,7 @@ const HomePage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
+        `/api/v1/product/product-list/${page}`
       );
       setLoading(false);
       setProducts([...Products, ...data.products]);
@@ -168,7 +168,7 @@ const HomePage = () => {
             {Products?.map((p) => (
               <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
                 <img
-                  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                  src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />

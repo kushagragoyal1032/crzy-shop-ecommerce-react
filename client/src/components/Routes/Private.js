@@ -9,7 +9,7 @@ export default function PrivateRoute() {
     const [auth, setAuth] = useAuth();
     useEffect(() => {
         const authcheck = async () => {
-            const res = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/user-auth`
+            const res = await axios.get(`/api/v1/auth/user-auth`
                 // {
                 // headers: { // don't need bcz we add default header in auth.js
                 //     Authorization: auth.token

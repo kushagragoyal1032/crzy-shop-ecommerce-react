@@ -9,7 +9,7 @@ export default function AdminPrivateRoute() {
     const [auth, setAuth] = useAuth();
     useEffect(() => {
         const authcheck = async () => {
-            const res = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/admin-auth`
+            const res = await axios.get(`/api/v1/auth/admin-auth`
                 // {
                 // headers: { // don't need bcz we add default header in auth.js
                 //     Authorization: auth.token
@@ -26,5 +26,5 @@ export default function AdminPrivateRoute() {
         if (auth?.token) authcheck();
     }, [auth?.token]);
 
-    return ok ? <Outlet /> : <Spinner path="/"/>;
+    return ok ? <Outlet /> : <Spinner path="/" />;
 }

@@ -16,25 +16,25 @@ const Profile = () => {
     const [address, setAddress] = useState('');
 
     // get user data
-    useEffect(()=>{
+    useEffect(() => {
         console.log(auth.user);
-        const {email, name, phone, address} = auth?.user;
+        const { email, name, phone, address } = auth?.user;
         setEmail(email);
         setAddress(address);
         setPhone(phone);
         setName(name);
-    },[auth?.user])
+    }, [auth?.user])
 
     const handleupdate = async (e) => {
         e.preventDefault();
         try {
-            const {data} = await axios.put(`${process.env.REACT_APP_API}/api/v1/auth/profile`, { name, email, password, phone, address });
-            if(data?.error) {
+            const { data } = await axios.put(`/api/v1/auth/profile`, { name, email, password, phone, address });
+            if (data?.error) {
                 toast.error(data?.error);
             }
             else {
                 console.log(auth.user);
-                setauth({...auth, user: data?.updateduser});
+                setauth({ ...auth, user: data?.updateduser });
                 let ls = localStorage.getItem('auth');
                 ls = JSON.parse(ls);
                 ls.user = data?.updateduser;
@@ -59,24 +59,24 @@ const Profile = () => {
                                 <h1 className='title'>USER PROFILE</h1>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputname" className="form-label">Name</label>
-                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="exampleInputname"  />
+                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="exampleInputname" />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  disabled />
+                                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled />
                                 </div>
 
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1"  />
+                                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputphone" className="form-label">Phone</label>
-                                    <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputphone"  />
+                                    <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputphone" />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputaddress" className="form-label">Address</label>
-                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputaddress"  />
+                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputaddress" />
                                 </div>
                                 <button type="submit" className="btn btn-primary">UPDATE</button>
                             </form>

@@ -19,8 +19,8 @@ const Register = () => {
     const handlesubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, { name, email, password, phone, address, answer });
-            if(res && res.data.success) {
+            const res = await axios.post(`/api/v1/auth/register`, { name, email, password, phone, address, answer });
+            if (res && res.data.success) {
                 toast.success(res.data.message)
                 navigate("/login");
             }
@@ -36,7 +36,7 @@ const Register = () => {
         <Layout title="Register - Crzy Shop">
             <div className='form-container'>
                 <form onSubmit={handlesubmit}>
-                <h1 className='title'>REGISTER FORM</h1>
+                    <h1 className='title'>REGISTER FORM</h1>
                     <div className="mb-3">
                         <label htmlFor="exampleInputname" className="form-label">Name</label>
                         <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="exampleInputname" required />
